@@ -1,0 +1,90 @@
+#include <iostream>
+using namespace std;
+
+// Base class: Student
+class Student {
+protected:
+    string name;
+    int rollNumber;
+
+public:
+    void setStudentDetails(string n, int r) {
+        name = n;
+        rollNumber = r;
+    }
+
+    void displayStudentDetails() {
+        cout << "Student Name: " << name << endl;
+        cout << "Roll Number: " << rollNumber << endl;
+    }
+};
+
+// Derived class: Marks (inherits from Student virtually)
+class Marks : virtual public Student {
+protected:
+    int mark1, mark2, mark3;
+
+public:
+    void setMarks(int m1, int m2, int m3) {
+        mark1 = m1;
+        mark2 = m2;
+        mark3 = m3;
+    }
+
+    void displayMarks() {
+        cout << "Academic Marks: " << mark1 << ", " << mark2 << ", " << mark3 << endl;
+    }
+
+    int totalAcademicMarks() {
+        return mark1 + mark2 + mark3;
+    }
+};
+
+// Derived class: Sports (inherits from Student virtually)
+class Sports : virtual public Student {
+protected:
+    int sportsMark;
+
+public:
+    void setSportsMark(int sm) {
+        sportsMark = sm;
+    }
+
+    void displaySportsMark() {
+        cout << "Sports Mark: " << sportsMark << endl;
+    }
+
+    int getSportsMark() {
+        return sportsMark;
+    }
+};
+
+// Final class: Result (inherits from both Marks and Sports)
+class Result : public Marks, public Sports {
+public:
+    void displayResult() {
+        displayStudentDetails();
+        displayMarks();
+        cout << "Total Academic Marks: " << totalAcademicMarks() << endl;
+        displaySportsMark();
+
+        int total = totalAcademicMarks() + getSportsMark();
+        float average = total / 4.0;
+
+        cout << "Overall Total Marks (Academic + Sports): " << total << endl;
+        cout << "Average Marks: " << average << endl;
+    }
+};
+
+// Main function
+int main() {
+    Result student1;
+
+    student1.setStudentDetails("Rahul Sharma", 102);
+    student1.setMarks(78, 85, 90);
+    student1.setSportsMark(88);
+
+    student1.displayResult();
+
+    return 0;
+}
