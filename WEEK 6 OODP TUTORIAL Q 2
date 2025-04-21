@@ -1,0 +1,66 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+// Base class: Shape
+class Shape {
+public:
+    virtual void getData() = 0;
+    virtual void printData() = 0;
+    virtual float calculateArea() = 0; // Pure virtual function
+};
+
+// Derived class: Rectangle
+class Rectangle : public Shape {
+private:
+    float length, width;
+
+public:
+    void getData() {
+        length = 10.0;
+        width = 5.0;
+    }
+
+    void printData() {
+        cout << "Rectangle - Length: " << length << ", Width: " << width << endl;
+    }
+
+    float calculateArea() {
+        return length * width;
+    }
+};
+
+// Derived class: Circle
+class Circle : public Shape {
+private:
+    float radius;
+
+public:
+    void getData() {
+        radius = 7.0;
+    }
+
+    void printData() {
+        cout << "Circle - Radius: " << radius << endl;
+    }
+
+    float calculateArea() {
+        return 3.14159f * radius * radius;
+    }
+};
+
+// Main function
+int main() {
+    Rectangle rect;
+    Circle circ;
+
+    rect.getData();
+    rect.printData();
+    cout << "Rectangle Area: " << rect.calculateArea() << endl;
+
+    circ.getData();
+    circ.printData();
+    cout << "Circle Area: " << circ.calculateArea() << endl;
+
+    return 0;
+}
