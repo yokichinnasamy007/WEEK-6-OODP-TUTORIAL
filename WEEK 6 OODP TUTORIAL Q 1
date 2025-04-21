@@ -1,0 +1,50 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+// Base class: Student
+class Student {
+protected:
+    string name;
+    int rollNumber;
+
+public:
+    void setStudentDetails(string n, int roll) {
+        name = n;
+        rollNumber = roll;
+    }
+};
+
+// Base class: SportsPlayer
+class SportsPlayer {
+protected:
+    string sportName;
+    int ranking;
+
+public:
+    void setSportsDetails(string sport, int rank) {
+        sportName = sport;
+        ranking = rank;
+    }
+};
+
+// Derived class: SportStudent
+class SportStudent : public Student, public SportsPlayer {
+public:
+    void displayDetails() {
+        cout << "Student Name: " << name << endl;
+        cout << "Roll Number: " << rollNumber << endl;
+        cout << "Sport Name: " << sportName << endl;
+        cout << "Ranking: " << ranking << endl;
+    }
+};
+
+// Main function
+int main() {
+    SportStudent s;
+    s.setStudentDetails("Alex Johnson", 101);
+    s.setSportsDetails("Basketball", 5);
+    s.displayDetails();
+
+    return 0;
+}
