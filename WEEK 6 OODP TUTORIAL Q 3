@@ -1,0 +1,65 @@
+#include <iostream>
+using namespace std;
+
+// Base class: Person
+class Person {
+protected:
+    string name;
+
+public:
+    void setName(string n) {
+        name = n;
+    }
+
+    void displayName() {
+        cout << "Name: " << name << endl;
+    }
+};
+
+// Derived class: Teacher
+class Teacher : public Person {
+protected:
+    string subject;
+
+public:
+    void setSubject(string s) {
+        subject = s;
+    }
+
+    void displaySubject() {
+        cout << "Subject: " << subject << endl;
+    }
+};
+
+// Further Derived class: Professor
+class Professor : public Teacher {
+private:
+    string department;
+
+public:
+    void setDepartment(string d) {
+        department = d;
+    }
+
+    void displayDepartment() {
+        cout << "Department: " << department << endl;
+    }
+
+    void displayAllDetails() {
+        displayName();
+        displaySubject();
+        displayDepartment();
+    }
+};
+
+// Main function
+int main() {
+    Professor prof;
+    prof.setName("Dr. Emily Carter");
+    prof.setSubject("Physics");
+    prof.setDepartment("Science");
+
+    prof.displayAllDetails();
+
+    return 0;
+}
